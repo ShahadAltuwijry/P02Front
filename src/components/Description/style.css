@@ -1,0 +1,55 @@
+.descMainDiv {
+  width: 100%;
+  max-height: 500px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.bannerImg {
+  filter: brightness(50%);
+  width: 100%;
+  height: 250rem;
+  z-index: -9;
+}
+
+.descContDiv {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 60%;
+  height: 515px;
+  padding-top: 40px;
+  background-color: rgba(240, 255, 255, 0.342);
+  border-radius: 30px;
+  margin-top: -600px;
+}
+
+.displayImg {
+  z-index: 99;
+  width: 70%;
+}
+
+.longDesc {
+  color: rgb(211, 211, 211);
+  width: 80%;
+  margin-bottom: 10px;
+}
+
+.backBtn {
+  z-index: 99;
+  margin-top: -20px;
+}
+
+.descSlideDiv {
+  width: 50%;
+  /* border: 1px solid white; */
+  border-radius: 30px;
+}
+
+.slider {
+  /* border: 1px solid white; */
+  border-radius: 30px;
+}
