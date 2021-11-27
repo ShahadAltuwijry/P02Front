@@ -335,6 +335,7 @@ a {
 .spotBtn:hover {
   cursor: pointer;
   background-color: #057d8b;
+  color: #ffffff;
   transform: scale(1.05);
 }
 

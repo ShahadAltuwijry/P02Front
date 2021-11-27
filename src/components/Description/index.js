@@ -3,20 +3,20 @@ import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import "./style.css";
-import { Zoom } from "react-slideshow-image";
+// import { Zoom } from "react-slideshow-image";
 
 const Description = () => {
-  const zoomInProperties = {
-    indicators: true,
-    scale: 0.5,
-  };
+  // const zoomInProperties = {
+  //   indicators: true,
+  //   scale: 0.5,
+  // };
   // const location = useLocation();
   // const item = location.item;
   const [info, setInfo] = useState([]);
   const { id } = useParams();
   const navigate = useNavigate();
 
-  const [images, setImages] = useState([]);
+  // const [images, setImages] = useState([]);
 
   useEffect(() => {
     getInfo();
@@ -28,7 +28,7 @@ const Description = () => {
       `https://visitsaudia-backend.herokuapp.com/spot/${id}`
     );
     setInfo(res.data);
-    setImages(res.data.slides);
+    // setImages(res.data.slides);
   };
 
   console.log(info);
@@ -49,10 +49,10 @@ const Description = () => {
           />
         </button>
         <h1 className="descHead">{info.name}</h1>
-        <img className="displayImg" src={info.Img} al={info.name} />
+        <img className="displayImg" src={info.Img} alt={info.name} />
         <h3 className="longDesc">{info.longDesc}</h3>
         <div className="descSlideDiv">
-          <Zoom {...zoomInProperties}>
+          {/* <Zoom {...zoomInProperties}>
             {images.map((each, index) => (
               <div key={index} style={{ width: "100%" }}>
                 <img
@@ -63,7 +63,7 @@ const Description = () => {
                 />
               </div>
             ))}
-          </Zoom>
+          </Zoom> */}
         </div>
       </div>
     </div>
