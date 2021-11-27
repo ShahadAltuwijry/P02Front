@@ -58,7 +58,7 @@ const Description = () => {
           <p className="descP">
             <b>
               لمزيد من التفاصيل:{" "}
-              <a href={info.origLink} target="_blank">
+              <a href={info.origLink} target="_blank" rel="noreferrer">
                 الذهاب الى الصفحة الرسمية للمنطقة
               </a>
             </b>

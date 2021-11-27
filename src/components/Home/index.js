@@ -11,6 +11,7 @@ const Home = () => {
   const [spots, setSpots] = useState([]);
   const [spotInfo, setSpotInfo] = useState([{}]);
   const [logged, setLogged] = useState([]);
+  const [addVisit, setAddVisit] = useState([]);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -28,34 +29,39 @@ const Home = () => {
     setProgram(res.data);
     setSpots(res2.data);
   };
-  console.log(spots);
+  //console.log(spots);
 
   const spotDetails = async () => {
     const det = await axios.get(
       `https://visitsaudia-backend.herokuapp.com/spot/${spots._id}`
     );
     setSpotInfo(det);
+    
   };
 
-  console.log(spotDetails);
-  console.log(spotInfo);
+  const visits = async (obejectId) => {
+    try {
+      const vis = await axios.put(
+        `http://localhost:5000/add/${logged._id}/${obejectId}`
+      );
+
+      console.log(vis.data);
+
+      localStorage.setItem("visits", JSON.stringify(vis.data.visits));
+
+      setAddVisit(vis.data.visits);
+    } catch (error) {
+      console.log("visits error", error);
+    }
+  };
+
+  // console.log(spotDetails);
+  // console.log(spotInfo);
 
   useEffect(() => {
     const userLogged = localStorage.getItem("user");
     setLogged(JSON.parse(userLogged));
   }, []);
-
-  // const infoPage = () => {};
-
-  // render() {
-  // const settings = {
-  //   className: "center",
-  //   centerMode: true,
-  //   infinite: true,
-  //   centerPadding: "60px",
-  //   slidesToShow: 3,
-  //   speed: 500
-  // };
 
   return (
     <div className="homeWrapper">
@@ -134,7 +140,10 @@ const Home = () => {
                         المزيد من التفاصيل
                       </button>
                       {logged ? (
-                        <button className="addBtn">
+                        <button
+                          className="addBtn"
+                          onClick={() => visits(item._id)}
+                        >
                           <img
                             className="addIcon"
                             src="https://img.icons8.com/ios-glyphs/60/000000/plus-math.png"
