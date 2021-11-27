@@ -2,6 +2,7 @@ import axios from "axios";
 import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
+import topvis from "./../روح السعودية/topvis.png";
 import "./style.css";
 // import { Zoom } from "react-slideshow-image";
 
@@ -37,8 +38,9 @@ const Description = () => {
     <div className="descMainDiv">
       <img src={info.banner} alt={info.name} className="bannerImg" />
       <div className="descContDiv">
+        <img src={topvis} alt="top" className="topImg" />
         <button
-          className="backBtn"
+          className="backBtnDesc"
           onClick={() => {
             navigate("/");
           }}
@@ -48,10 +50,19 @@ const Description = () => {
             alt="key"
           />
         </button>
+
         <h1 className="descHead">{info.name}</h1>
-        <img className="displayImg" src={info.Img} alt={info.name} />
-        <h3 className="longDesc">{info.longDesc}</h3>
+        {/* <img className="displayImg" src={info.Img} alt={info.name} /> */}
+        <h4 className="longDesc">{info.longDesc}</h4>
         <div className="descSlideDiv">
+          <p className="descP">
+            <b>
+              لمزيد من التفاصيل:{" "}
+              <a href={info.origLink} target="_blank">
+                الذهاب الى الصفحة الرسمية للمنطقة
+              </a>
+            </b>
+          </p>
           {/* <Zoom {...zoomInProperties}>
             {images.map((each, index) => (
               <div key={index} style={{ width: "100%" }}>
