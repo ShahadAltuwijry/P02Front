@@ -7,6 +7,7 @@ import "./style.css";
 
 const UserPage = () => {
   const [logged, setLogged] = useState([]);
+  const [spots, setSpots] = useState([{}]);
   // const [newName, setNewName] = useState("");
   // const [newPass, setNewPass] = useState("");
   // const [newEmail, setNewEmail] = useState("");
@@ -18,7 +19,6 @@ const UserPage = () => {
     setLogged(JSON.parse(userLogged));
   }, []);
 
-  const [spots, setSpots] = useState([{}]);
   // const [spotInfo, setSpotInfo] = useState();
   const [addVisit, setAddVisit] = useState([]);
 
@@ -51,32 +51,43 @@ const UserPage = () => {
     }
   };
 
-  // console.log(addVisit);
+  console.log(addVisit);
 
   useEffect(() => {
-    const visitsAdded = localStorage.getItem("visits");
-    setAddVisit(JSON.parse(visitsAdded));
+    const visitsAdded = JSON.parse(localStorage.getItem("visits"));
+    setAddVisit(visitsAdded);
+    spotDetails(visitsAdded);
   }, []);
 
-  // for (let i = 0; i < addVisit.length; i++) {
-  //   let res = addVisit[i];
-  //   console.log(res);
-  // }
+  for (let i = 0; i < addVisit.length; i++) {
+    console.log(addVisit[i]);
+  }
 
-  // eslint-disable-next-line
-  const spotDetails = async () => {
-    for (let i = 0; i < addVisit.length; i++) {
-      console.log(addVisit[i]);
-      let res = addVisit[i];
-
-      const details = await axios.get(
-        `https://visitsaudia-backend.herokuapp.com/spot/${res}`
+  const spotDetails = async (array) => {
+    for (let i = 0; i < array.length; i++) {
+      console.log(array, "addvisit");
+      // eslint-disable-next-line
+      const vis = await axios.get(
+        `https://visitsaudia-backend.herokuapp.com/spot/${array[i]}`
       );
-      setSpots(details);
-      console.log(spots);
+      setSpots(...spots, vis);
+
+      // console.log(vis);
     }
   };
+  console.log(spots);
 
+  // const spotDetails = async () => {
+  //   for (let i = 0; i < addVisit.length; i++) {
+  //     console.log(addVisit[i]);
+
+  //     const details = await axios.get(
+  //       `https://visitsaudia-backend.herokuapp.com/spot/${addVisit[i]}`
+  //     );
+  //     setSpots(details);
+  //     console.log(spots);
+  //   }
+  // };
   // console.log(spots);
 
   const logOut = () => {
@@ -123,53 +134,59 @@ const UserPage = () => {
           <div className="visitsDiv">
             <img src="./topvis.png" alt="user" className="userImg" />
             <h2 className="visitHead">زياراتي</h2>
-            {spots.map((item, i) => (
-              <div key={i} className="spotCard">
-                <div className="spotImg">
-                  <img
-                    // key={`img-${i}`}
-                    src={item.img}
-                    alt={`spot=${i}`}
-                    className="spotImg2"
-                  />
-                </div>
-                <div className="spotCont">
-                  <h3 className="spotName" key={i}>
-                    {item.name}
-                  </h3>
-                  <div className="sideSpotDiv">
-                    <p className="spotP">{item.description}</p>
-                    <br />
-                    <br />
-                    <br />
-                    <div className="spotBtns">
-                      <button
-                        className="spotBtn"
-                        onClick={() => {
-                          navigate(`/description/${item._id}`);
-                        }}
-                      >
-                        المزيد من التفاصيل
-                      </button>
-                      {logged ? (
+            {spots ? (
+              <div className="emptyVis">
+                <h2>لا يوجد زيارات بعد</h2>
+              </div>
+            ) : (
+              spots.map((item, i) => (
+                <div key={i} className="spotCard">
+                  <div className="spotImg">
+                    <img
+                      // key={`img-${i}`}
+                      src={item.img}
+                      alt={`spot=${i}`}
+                      className="spotImg2"
+                    />
+                  </div>
+                  <div className="spotCont">
+                    <h3 className="spotName" key={i}>
+                      {item.name}
+                    </h3>
+                    <div className="sideSpotDiv">
+                      <p className="spotP">{item.description}</p>
+                      <br />
+                      <br />
+                      <br />
+                      <div className="spotBtns">
                         <button
-                          className="addBtn"
-                          onClick={() => visits(item._id)}
+                          className="spotBtn"
+                          onClick={() => {
+                            navigate(`/description/${item._id}`);
+                          }}
                         >
-                          <img
-                            className="addIcon"
-                            src="https://img.icons8.com/ios-glyphs/60/000000/plus-math.png"
-                            alt="button"
-                          />
+                          المزيد من التفاصيل
                         </button>
-                      ) : (
-                        ""
-                      )}
+                        {logged ? (
+                          <button
+                            className="addBtn"
+                            onClick={() => visits(item._id)}
+                          >
+                            <img
+                              className="addIcon"
+                              src="https://img.icons8.com/ios-glyphs/60/000000/plus-math.png"
+                              alt="button"
+                            />
+                          </button>
+                        ) : (
+                          ""
+                        )}
+                      </div>
                     </div>
                   </div>
                 </div>
-              </div>
-            ))}
+              ))
+            )}
           </div>
           <div className="userInfo">
             <img src="./top.png" alt="user" className="userImg" />

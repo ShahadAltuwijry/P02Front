@@ -142,6 +142,8 @@ const Home = () => {
                         المزيد من التفاصيل
                       </button>
                       {logged ? (
+
+                        
                         <button
                           className="addBtn"
                           onClick={() => visits(item._id)}

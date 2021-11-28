@@ -15,6 +15,13 @@
   z-index: -9;
 }
 
+.emptyVis {
+  height: 350px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
 .descContDiv {
   display: flex;
   flex-direction: column;
