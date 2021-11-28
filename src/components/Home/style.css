@@ -176,7 +176,8 @@
   flex-direction: column;
   margin: 10px;
   width: 25%;
-  height: 90%;
+  height: 92%;
+  margin-top: -10px;
   border: 1px solid rgba(0, 0, 0, 0.219);
   /* box-shadow: var(--lightBlue); */
   border-radius: 30px;
