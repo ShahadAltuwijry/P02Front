@@ -113,9 +113,9 @@ const UserPage = () => {
       <Nav />
       {!logged ? (
         <div className="guestDiv">
-          <h2 className="guestHead">
-            :( ضيفنا الغالي، لا نملك معلومات كافية عنك لاظهار هذه الصفحة لك
-          </h2>
+          <h1 className="guestHead">
+            :( لا يمكن اظهار هذه الصفحة بحساب زائر
+          </h1>
           <br />
           <h3> !ابدأ رحلتك الممتعة معنا في السعودية عن طريق التسجيل </h3>
           <br />
