@@ -14,7 +14,7 @@ const SignUp = () => {
 
   const getUsers = async () => {
     const user = await axios.get(
-      "https://visitsaudia-backend.herokuapp.com/user"
+      "https://visitsaudia-backend.herokuapp.com/users"
     );
     setAllUsers(user.data);
     // console.log(user.data);
