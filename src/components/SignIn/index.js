@@ -29,7 +29,7 @@ const SignIn = () => {
     //   e.preventDefault();
     if (typeof res.data.user === "object") {
       localStorage.setItem("user", JSON.stringify(res.data.user));
-      navigate("/UserPage");
+      navigate("/");
     } else {
       Swal.fire({
         title:
