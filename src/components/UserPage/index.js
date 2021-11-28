@@ -8,6 +8,8 @@ import "./style.css";
 const UserPage = () => {
   const [logged, setLogged] = useState([]);
   const [spots, setSpots] = useState([{}]);
+  const [addVisit, setAddVisit] = useState([]);
+
   // const [newName, setNewName] = useState("");
   // const [newPass, setNewPass] = useState("");
   // const [newEmail, setNewEmail] = useState("");
@@ -20,7 +22,6 @@ const UserPage = () => {
   }, []);
 
   // const [spotInfo, setSpotInfo] = useState();
-  const [addVisit, setAddVisit] = useState([]);
 
   // useEffect(() => {
   //   getData();
@@ -37,7 +38,7 @@ const UserPage = () => {
   const visits = async (obejectId) => {
     try {
       const vis = await axios.put(
-        `http://localhost:5000/add/${logged._id}/${obejectId}`
+        `https://visitsaudia-frontend.herokuapp.com/add/${logged._id}/${obejectId}`
       );
 
       console.log(vis.data);
@@ -77,18 +78,22 @@ const UserPage = () => {
   // };
   // console.log(spots);
 
-  // const spotDetails = async () => {
-  //   for (let i = 0; i < addVisit.length; i++) {
-  //     console.log(addVisit[i]);
+  const spotDetails = async () => {
+    // for (let i = 0; i < addVisit.length; i++) {
+    // console.log(addVisit[i]);
 
-  //     const details = await axios.get(
-  //       `https://visitsaudia-backend.herokuapp.com/spot/${addVisit[i]}`
-  //     );
-  //     setSpots(details);
-  //     console.log(spots);
-  //   }
-  // };
-  // console.log(spots);
+    const details = await axios.get(
+      `https://visitsaudia-backend.herokuapp.com/user/${logged.name}`
+    );
+    setSpots(details.data);
+    console.log(details.data);
+    // }
+  };
+  console.log(spots, "spot");
+
+  useEffect(() => {
+    spotDetails();
+  }, []);
 
   const logOut = () => {
     localStorage.removeItem("user");
@@ -113,9 +118,7 @@ const UserPage = () => {
       <Nav />
       {!logged ? (
         <div className="guestDiv">
-          <h1 className="guestHead">
-            :( لا يمكن اظهار هذه الصفحة بحساب زائر
-          </h1>
+          <h1 className="guestHead">:( لا يمكن اظهار هذه الصفحة بحساب زائر</h1>
           <br />
           <h3> !ابدأ رحلتك الممتعة معنا في السعودية عن طريق التسجيل </h3>
           <br />
@@ -134,7 +137,7 @@ const UserPage = () => {
           <div className="visitsDiv">
             <img src="./topvis.png" alt="user" className="userImg" />
             <h2 className="visitHead">زياراتي</h2>
-            {spots ? (
+            {spots.length < 1 ? (
               <div className="emptyVis">
                 <h2>لا يوجد زيارات بعد</h2>
               </div>

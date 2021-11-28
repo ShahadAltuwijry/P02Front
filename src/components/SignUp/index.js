@@ -59,7 +59,7 @@ const SignUp = () => {
         .then((res) => console.log(res));
 
       localStorage.setItem("user", JSON.stringify(regData));
-      navigate("/UserPage");
+      navigate("/");
     }
   };
 
