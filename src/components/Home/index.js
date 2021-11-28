@@ -9,8 +9,10 @@ import "./style.css";
 const Home = () => {
   const [program, setProgram] = useState([]);
   const [spots, setSpots] = useState([]);
+  // eslint-disable-next-line
   const [spotInfo, setSpotInfo] = useState([{}]);
   const [logged, setLogged] = useState([]);
+  // eslint-disable-next-line
   const [addVisit, setAddVisit] = useState([]);
   const navigate = useNavigate();
 
@@ -31,12 +33,12 @@ const Home = () => {
   };
   //console.log(spots);
 
+  // eslint-disable-next-line
   const spotDetails = async () => {
     const det = await axios.get(
       `https://visitsaudia-backend.herokuapp.com/spot/${spots._id}`
     );
     setSpotInfo(det);
-    
   };
 
   const visits = async (obejectId) => {
@@ -120,11 +122,11 @@ const Home = () => {
                     alt={`spot=${i}`}
                     className="spotImg2"
                   />
-                </div>
-                <div className="spotCont">
                   <h3 className="spotName" key={i}>
                     {item.name}
                   </h3>
+                </div>
+                <div className="spotCont">
                   <div className="sideSpotDiv">
                     <p className="spotP">{item.description}</p>
                     <br />

@@ -296,8 +296,14 @@ a {
   color: #ffffff;
   font-size: 65px;
   z-index: 99;
-  margin-left: -190px;
-  margin-top: 100px;
+  /* border: 1px solid black; */
+  width: 180px;
+  height: 180px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-left: -220px;
+  margin-top: 60px;
   transition: all ease-in-out 0.6s;
 }
 

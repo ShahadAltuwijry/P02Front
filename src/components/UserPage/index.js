@@ -19,20 +19,20 @@ const UserPage = () => {
   }, []);
 
   const [spots, setSpots] = useState([{}]);
-  const [spotInfo, setSpotInfo] = useState([{}]);
-  const [addVisit, setAddVisit] = useState([{}]);
+  // const [spotInfo, setSpotInfo] = useState();
+  const [addVisit, setAddVisit] = useState([]);
 
-  useEffect(() => {
-    getData();
-  }, []);
+  // useEffect(() => {
+  //   getData();
+  // }, []);
 
-  const getData = async () => {
-    const res2 = await axios.get(
-      "https://visitsaudia-backend.herokuapp.com/spot"
-    );
+  // const getData = async () => {
+  //   const res2 = await axios.get(
+  //     "https://visitsaudia-backend.herokuapp.com/spot"
+  //   );
 
-    setSpots(res2.data);
-  };
+  //   setSpots(res2.data);
+  // };
 
   const visits = async (obejectId) => {
     try {
@@ -45,25 +45,39 @@ const UserPage = () => {
       localStorage.setItem("visits", JSON.stringify(vis.data.visits));
 
       setAddVisit(vis.data.visits);
-      console.log(vis.data.visits);
+      console.log(vis);
     } catch (error) {
       console.log("visits error", error);
     }
   };
+
+  // console.log(addVisit);
 
   useEffect(() => {
     const visitsAdded = localStorage.getItem("visits");
     setAddVisit(JSON.parse(visitsAdded));
   }, []);
 
-  // const spotDetails = async () => {
-  //   const res = await axios.get(
-  //     `https://visitsaudia-backend.herokuapp.com/spot/${addVisit}`
-  //   );
-  //   setSpotInfo(res);
-  // };
+  // for (let i = 0; i < addVisit.length; i++) {
+  //   let res = addVisit[i];
+  //   console.log(res);
+  // }
 
-  // console.log(spotInfo);
+  // eslint-disable-next-line
+  const spotDetails = async () => {
+    for (let i = 0; i < addVisit.length; i++) {
+      console.log(addVisit[i]);
+      let res = addVisit[i];
+
+      const details = await axios.get(
+        `https://visitsaudia-backend.herokuapp.com/spot/${res}`
+      );
+      setSpots(details);
+      console.log(spots);
+    }
+  };
+
+  // console.log(spots);
 
   const logOut = () => {
     localStorage.removeItem("user");
@@ -138,7 +152,10 @@ const UserPage = () => {
                         المزيد من التفاصيل
                       </button>
                       {logged ? (
-                        <button className="addBtn">
+                        <button
+                          className="addBtn"
+                          onClick={() => visits(item._id)}
+                        >
                           <img
                             className="addIcon"
                             src="https://img.icons8.com/ios-glyphs/60/000000/plus-math.png"
