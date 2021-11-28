@@ -30,6 +30,7 @@ const SignIn = () => {
     if (typeof res.data.user === "object") {
       localStorage.setItem("user", JSON.stringify(res.data.user));
       navigate("/");
+
     } else {
       Swal.fire({
         title:
@@ -41,7 +42,6 @@ const SignIn = () => {
           popup: "animate__animated animate__fadeOutUp",
         },
       });
-      // navigate("/signin");
       // }
       // console.log(res.data.message);
       // setMessage(res.data.message);
