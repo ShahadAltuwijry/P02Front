@@ -56,7 +56,7 @@ const UserPage = () => {
   useEffect(() => {
     const visitsAdded = JSON.parse(localStorage.getItem("visits"));
     setAddVisit(visitsAdded);
-    spotDetails(visitsAdded);
+    // spotDetails(visitsAdded);
   }, []);
 
   for (let i = 0; i < addVisit.length; i++) {

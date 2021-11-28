@@ -133,27 +133,35 @@ const Home = () => {
                     <br />
                     <br />
                     <div className="spotBtns">
-                      <button
+                      {/* <button
                         className="spotBtn"
                         onClick={() => {
                           navigate(`/description/${item._id}`);
                         }}
                       >
                         المزيد من التفاصيل
-                      </button>
+                      </button> */}
                       {logged ? (
-
-                        
-                        <button
-                          className="addBtn"
-                          onClick={() => visits(item._id)}
-                        >
-                          <img
-                            className="addIcon"
-                            src="https://img.icons8.com/ios-glyphs/60/000000/plus-math.png"
-                            alt="button"
-                          />
-                        </button>
+                        <>
+                          <button
+                            className="spotBtn"
+                            onClick={() => {
+                              navigate(`/description/${item._id}`);
+                            }}
+                          >
+                            المزيد من التفاصيل
+                          </button>
+                          <button
+                            className="addBtn"
+                            onClick={() => visits(item._id)}
+                          >
+                            <img
+                              className="addIcon"
+                              src="https://img.icons8.com/ios-glyphs/60/000000/plus-math.png"
+                              alt="button"
+                            />
+                          </button>
+                        </>
                       ) : (
                         ""
                       )}
