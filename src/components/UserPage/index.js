@@ -59,9 +59,9 @@ const UserPage = () => {
     // spotDetails(visitsAdded);
   }, []);
 
-  for (let i = 0; i < addVisit.length; i++) {
-    console.log(addVisit[i]);
-  }
+  // for (let i = 0; i < addVisit.length; i++) {
+  //   console.log(addVisit[i]);
+  // }
 
   // const spotDetails = async (array) => {
   //   for (let i = 0; i < array.length; i++) {
