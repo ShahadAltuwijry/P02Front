@@ -55,7 +55,7 @@ const SignUp = () => {
       };
       // eslint-disable-next-line
       const res = await axios
-        .post(`http://localhost:5000/user`, regData)
+        .post(`https://visitsaudia-backend.herokuapp.com/user`, regData)
         .then((res) => console.log(res));
 
       localStorage.setItem("user", JSON.stringify(regData));
