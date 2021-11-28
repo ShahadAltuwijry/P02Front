@@ -44,7 +44,7 @@ const Home = () => {
   const visits = async (obejectId) => {
     try {
       const vis = await axios.put(
-        `http://localhost:5000/add/${logged._id}/${obejectId}`
+        `https://visitsaudia-backend.herokuapp.com/add/${logged._id}/${obejectId}`
       );
 
       console.log(vis.data);
