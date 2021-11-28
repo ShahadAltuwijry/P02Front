@@ -63,19 +63,19 @@ const UserPage = () => {
     console.log(addVisit[i]);
   }
 
-  const spotDetails = async (array) => {
-    for (let i = 0; i < array.length; i++) {
-      console.log(array, "addvisit");
-      // eslint-disable-next-line
-      const vis = await axios.get(
-        `https://visitsaudia-backend.herokuapp.com/spot/${array[i]}`
-      );
-      setSpots(...spots, vis);
+  // const spotDetails = async (array) => {
+  //   for (let i = 0; i < array.length; i++) {
+  //     console.log(array, "addvisit");
+  //     // eslint-disable-next-line
+  //     const vis = await axios.get(
+  //       `https://visitsaudia-backend.herokuapp.com/spot/${array[i]}`
+  //     );
+  //     setSpots(...spots, vis);
 
-      // console.log(vis);
-    }
-  };
-  console.log(spots);
+  //     // console.log(vis);
+  //   }
+  // };
+  // console.log(spots);
 
   // const spotDetails = async () => {
   //   for (let i = 0; i < addVisit.length; i++) {
