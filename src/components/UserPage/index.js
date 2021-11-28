@@ -86,7 +86,7 @@ const UserPage = () => {
       `https://visitsaudia-backend.herokuapp.com/user/${logged.name}`
     );
     setSpots(details.data);
-    console.log(details.data);
+    console.log(details.data, "gg");
     // }
   };
   console.log(spots, "spot");
@@ -94,6 +94,13 @@ const UserPage = () => {
   useEffect(() => {
     spotDetails();
   }, []);
+
+  const remove = async (id) => {
+    const rem = await axios.put(
+      `https://visitsaudia-backend.herokuapp.com/user/${id}`
+    );
+    setLogged();
+  };
 
   const logOut = () => {
     localStorage.removeItem("user");
@@ -151,13 +158,13 @@ const UserPage = () => {
                       alt={`spot=${i}`}
                       className="spotImg2"
                     />
-                  </div>
-                  <div className="spotCont">
-                    <h3 className="spotName" key={i}>
+                    <h3 className="spotNameU" key={i}>
                       {item.name}
                     </h3>
+                  </div>
+                  <div className="spotCont">
                     <div className="sideSpotDiv">
-                      <p className="spotP">{item.description}</p>
+                      <p className="spotPU">{item.description}</p>
                       <br />
                       <br />
                       <br />
@@ -173,7 +180,7 @@ const UserPage = () => {
                         {logged ? (
                           <button
                             className="addBtn"
-                            onClick={() => visits(item._id)}
+                            onClick={() => remove(item._id)}
                           >
                             <img
                               className="addIcon"
